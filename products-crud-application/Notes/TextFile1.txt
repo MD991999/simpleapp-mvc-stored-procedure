@@ -1,0 +1,67 @@
+﻿
+**  TempData
+
+    --TempData is a feature provided by the framework to store data temporarily between two consecutive requests.
+    --A key-value collection that allows you to store small amounts of data, such as messages or status information, to be accessed in subsequent requests.
+    --For example, if a user submits a form and you want to display a success message on the redirected page, you can store the message in TempData before redirecting and retrieve it in the subsequent request.
+    --TempData is meant for short-term storage and is cleared automatically after it is read.
+
+
+
+** TempData["InfoMessage"] = "Currently products is not available";
+   --here InfoMessage is the key that store the information
+
+** "@" symbol:it is used to indicte the presence of Csharp code
+
+** Razor Syntax:It is used to combine Html Markup with C# code within the same file.
+
+** To auto hide a div ,using a custom script
+  --go to script file and create a new folder
+  --inside the new file you have to write the code for auto hide.
+ eg)   window.setTimeout(() => {
+    $(".alert").fadeTo(500, 0).slideUp(500, function () {
+        $(this).remove();
+    })
+
+}, 4000);
+
+  --After that you have to go to view session from there open the layout.cshtml and inside that drag and drop the newly created custom file on the script session
+
+
+  **  @Html.ActionLink("Create New Product", "Create", null, new { @class = "btn btn-primary" });
+  here  Html.ActionLink ==represent an anchor tag
+        first argument ==represent the text that should be displayed in the region
+        second argument ==represent what should happen when the button is clicked
+        third argument==null means no additional route values are being passed.
+        forth argument==this is an  anonymous object ,its literally used when u=yu suddenly wnt to add properties to your 
+
+
+         STANDAD WAY OF CREATING A STOREDPROCEDURE
+
+**   Create procedure SPI_InsertAlldetails(
+@ProductName nvarchar(50),
+@Price decimal(8,2),
+@Qty int,
+@Remarks nvarchar(50)
+)
+AS
+begin
+Begin try
+	begin tran
+		Insert Into Tblproductdetails (ProductName,Price,Qty,Remarks)Values
+		(@ProductName,@Price,@Qty,@Remarks)
+	commit tran
+	--commit tran is used to store the changes that we have done in the database into a permanent
+End try
+begin catch
+	rollback tran
+	--once we find out that there is an error happened ,then we can bring back all changes that we have commited while doiing this call
+
+	select ERROR_MESSAGE()   ===retrieves the error message associated with the error that occurred and returns it as the result of the stored procedure.
+end catch
+end
+
+** command.CommandType = CommandType.StoredProcedure; //execute stored procedure
+   command.CommandType = CommandType.Text;  //for executing SQL statements directly 
+
+** FirstOrDefault() :FirstOrDefault() is a LINQ method that is used to retrieve the first element from a sequence or collection that matches a specified condition. 

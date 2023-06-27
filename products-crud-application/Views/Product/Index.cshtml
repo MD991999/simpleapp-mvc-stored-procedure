@@ -1,0 +1,113 @@
+﻿@model IEnumerable<products_crud_application.Models.product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<h2>Index</h2>
+
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-danger d-flex justify-content-between">
+        <strong>Information:  @TempData["InfoMessage"] </strong>
+        <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+    </div>
+}
+else if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success d-flex justify-content-between">
+        <strong>Success:@TempData["SuccessMessage"] </strong>
+        <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+    </div>
+}
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger d-flex justify-content-between">
+        <strong>Error:  @TempData["ErrorMessage"] </strong>
+        <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+    </div>
+}
+else if (TempData["UpdateSuccessMessage"] != null)
+{
+    <div class="alert alert-success d-flex justify-content-between">
+        <strong>Success:  @TempData["UpdateSuccessMessage"] </strong>
+        <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+    </div>
+}
+else if (TempData["UpdateErrorMessage"] != null)
+{
+    <div class="alert alert-danger d-flex justify-content-between">
+        <strong>Error:  @TempData["UpdateErrorMessage"] </strong>
+        <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+    </div>
+}
+else if (TempData["UpdationvalidationErrorMessage"] != null)
+{
+    <div class="alert alert-danger d-flex justify-content-between">
+        <strong>Error:  @TempData["UpdationvalidationErrorMessage"] </strong>
+        <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+    </div>
+}
+else if (TempData["deleteidexistsmessage"] != null)
+{
+    <div class="alert alert-danger d-flex justify-content-between">
+        <strong>Error:  @TempData["deleteidexistsmessage"] </strong>
+        <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+    </div>
+}
+else if (TempData["deleteexceptionerrormessage"] != null)
+{
+    <div class="alert alert-danger d-flex justify-content-between">
+        <strong>Error:  @TempData["deleteexceptionerrormessage"] </strong>
+        <button type="button" class="btn-close" aria-label="Close" data-dismiss="alert"></button>
+    </div>
+}
+
+
+<p>
+    @Html.ActionLink("Create New Product", "Create", null, new { @class = "btn btn-primary" });
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Details", "Details", new { id = item.ProductID }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
